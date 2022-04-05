@@ -6,11 +6,13 @@ class Paging {
     // instance
     // new Paging
 
+    req;
+    url;
     start;
     count;
-    req;
-    locker = false;
     moreData;
+    locker = false;
+    accumulator = []
 
     constructor(req, count = 10, start = 0) {
         this.req = req;
@@ -30,7 +32,7 @@ class Paging {
         if (!this._getLocker()) return;
 
         const data = await this._actualGetData();
-        
+
         this._releaseLocker();
 
         return data;

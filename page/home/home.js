@@ -1,3 +1,5 @@
+import { SpuPaging } from "../../model/spu-paging";
+
 class Home {
     async initAllData() {
         const theme = new Theme();
@@ -27,6 +29,18 @@ class Home {
             themeESpu,
             activityD
         })
+    }
+
+    async onLoad(options) {
+        this.initAllData()
+    }
+
+    async initBottomSupList() {
+        const paging = await SpuPaging.getLatestPaging()
+        const data = paging.getMoreData();
+        if(!data) {
+            return
+        }
     }
 }
 
