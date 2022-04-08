@@ -31,13 +31,13 @@ class Home {
         })
     }
 
-    async onLoad(options) {
+    async onLoad() {
         this.initAllData()
     }
 
     async initBottomSupList() {
-        const paging = await SpuPaging.getLatestPaging()
-        const data = paging.getMoreData();
+        const paging = SpuPaging.getLatestPaging()
+        const data = await paging.getMoreData();
         if(!data) {
             return
         }
